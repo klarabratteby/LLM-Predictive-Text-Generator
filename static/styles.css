@@ -1,0 +1,94 @@
+/* General Styles */
+/* Adding a background image to the entire body */
+body {
+    background-image: url('/static/train.jpg'); /* Path to your image */
+    background-size: cover; /* Make the image cover the whole screen */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+main {
+    background-color: rgba(255, 255, 255, 0.8); /* White background with slight transparency */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+
+header h1 {
+    font-size: 2.5rem;
+    padding: 20px;
+    margin: 20px 0;
+    color: #333;
+}
+
+
+
+h2, h3 {
+    margin: 20px 0;
+}
+
+/* Form Styles */
+form {
+    margin: 20px 0;
+}
+
+/* Button and Input Styles */
+button, select, input[type="text"] {
+    border-radius: 8px;  /* Rounded corners */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+button {
+    background-color: #555555;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3d3d3d;
+}
+
+input[type="text"] {
+    width: 80%;
+    margin: 10px 0;
+}
+
+select {
+    padding: 10px;         /* Increase padding for size */
+    font-size: 1.2rem;     /* Larger font for dropdown */
+    width: 50%;            /* Increase width */
+}
+
+/* Clue Container Styles */
+.clue-container {
+    padding: 20px;
+    background-color: #e4e4e4;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+/* Style for the text inside the clue */
+.clue-container h2 {
+    font-size: 1rem;  
+    font-weight: normal;
+    font-style:italic; 
+}
+
+/* Easy Clue Container Styles */
+.easy-clue-container h3 {
+    font-size: 1rem;  
+    font-weight: normal;  
+    font-style:italic; 
+
+}
+
