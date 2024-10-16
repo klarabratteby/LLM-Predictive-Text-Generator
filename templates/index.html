@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Generator & Summarizer</title>
+</head>
+<body>
+    <h1>Upload a Document for Summarization</h1>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file"><br>
+        <label for="summary_type">Summary Type:</label>
+        <select id="summary_type" name="summary_type">
+            <option value="bullet">Bullet Points</option>
+            <option value="abstract">Abstract</option>
+        </select><br>
+        <label for="detail_level">Detail Level:</label>
+        <select id="detail_level" name="detail_level">
+            <option value="short">Short</option>
+            <option value="detailed">Detailed</option>
+        </select><br>
+        <label for="tone">Tone:</label>
+        <select id="tone" name="tone">
+            <option value="formal">Formal</option>
+            <option value="casual">Casual</option>
+        </select><br><br>
+        <input type="submit" value="Upload and Summarize">
+    </form>
+
+    <hr>
+
+    <h1>Chat with the Model</h1>
+    <form action="/chat" method="POST">
+        <label for="user_input">Ask something:</label><br>
+        <textarea id="user_input" name="user_input" rows="5" cols="50"></textarea><br>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>

@@ -1,3 +1,6 @@
 .DS_Store
 gpt2_env
 .ipynb_checkpoints
+dataset
+results
+uploads
