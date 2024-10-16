@@ -7,3 +7,6 @@ gpt2_env
 results/
 
 dataset/worldcities.csv
+dataset/data_questions.csv
+dataset/text_data/
+dataset/text_data_toc.csv
