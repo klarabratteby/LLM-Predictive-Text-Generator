@@ -21,14 +21,14 @@
   "rank_pattern": {},
   "revision": null,
   "target_modules": [
-    "encoder_attn.out_proj",
-    "decoder_attn.out_proj",
-    "encoder_attn.q_proj",
-    "encoder_attn.k_proj",
-    "decoder_attn.k_proj",
-    "decoder_attn.v_proj",
     "decoder_attn.q_proj",
-    "encoder_attn.v_proj"
+    "decoder_attn.out_proj",
+    "encoder_attn.v_proj",
+    "encoder_attn.out_proj",
+    "encoder_attn.q_proj",
+    "decoder_attn.v_proj",
+    "decoder_attn.k_proj",
+    "encoder_attn.k_proj"
   ],
   "task_type": "SEQ2SEQ_LM",
   "use_dora": false,

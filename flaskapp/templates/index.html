@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predict the Next Word</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f8f9fa; /* Light background color */
+      }
+      .container {
+        text-align: center;
+        width: 80%;
+      }
+      .summary-box {
+        border: 1px solid #007bff; /* Blue border */
+        border-radius: 5px;
+        padding: 20px;
+        margin: 10px;
+        background-color: #ffffff; /* White background for boxes */
+      }
+      .divider {
+        height: 100%;
+        width: 2px;
+        background-color: #007bff; /* Blue dividing line */
+        display: inline-block;
+      }
+      .row {
+        justify-content: center;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+      }
+      .token-count {
+        text-align: right;
+        font-size: 0.9em;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>LLM Summarizer</h1>
+      <form action="/" method="post">
+        <div class="form-group">
+          <label for="text">Enter Your Text:</label>
+          <textarea
+            class="form-control"
+            id="text"
+            name="text"
+            rows="10"
+            required
+          >
+{% if request.method == "POST" %}{{ request.form["text"] }}{% endif %}</textarea
+          >
+          <div class="token-count" id="token-count">0/1024 tokens</div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">
+          Predict
+        </button>
+      </form>
+      <div class="row mt-5">
+        <div class="col-md-5 summary-box">
+          <h2>Original BART</h2>
+          <p>{{ original_prediction }}</p>
+          <h4>Summerization Score</h4>
+          <ul>
+            <p>
+              <strong>Readability (0-100):</strong> {{
+              original_readability['flesch_reading_ease'] }}
+              <em>{{ original_readability['description'] }}</em>
+            </p>
+            <p>
+              <strong>Semantic Redundancy (0-1):</strong> {{
+              original_redundancy['score'] }}
+              <em>{{ original_redundancy['description'] }}</em>
+            </p>
+          </ul>
+        </div>
+        <div class="divider"></div>
+        <div class="col-md-5 summary-box">
+          <h2>BART with finetuning</h2>
+          <p>{{ fine_tuned_prediction }}</p>
+          <h4>Summerization Score</h4>
+          <ul>
+            <p>
+              <strong>Readability (0-100):</strong> {{
+              fine_tuned_readability['flesch_reading_ease'] }}
+              <em>{{ fine_tuned_readability['description'] }}</em>
+            </p>
+            <p>
+              <strong>Semantic Redundancy (0-1):</strong> {{
+              fine_tuned_redundancy['score'] }}
+              <em>{{ fine_tuned_redundancy['description'] }}</em>
+            </p>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const maxTokens = 1024;
+      const textArea = document.getElementById("text");
+      const tokenCountElement = document.getElementById("token-count");
+      const submitBtn = document.getElementById("submit-btn");
+
+      // Update token count and disable submit if limit is reached
+      function updateTokenCount() {
+        const text = textArea.value;
+        const tokenCount = text.length; // Rough token estimate by character count
+        tokenCountElement.textContent = `${tokenCount}/${maxTokens} tokens`;
+
+        // Disable submit button if token limit is reached
+        submitBtn.disabled = tokenCount >= maxTokens;
+      }
+
+      // Event listener for input change
+      textArea.addEventListener("input", updateTokenCount);
+
+      // Initial token count update on load
+      window.onload = () => {
+        submitBtn.disabled = false;
+        updateTokenCount();
+      };
+    </script>
+  </body>
+</html>
